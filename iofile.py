@@ -16,7 +16,7 @@ class IOAnimals:
 
     def load_animals(self):
         filenames = os.listdir(self.dirname + '/')
-        print(filenames)
+        #print(filenames)
         animals = []
         for filename in filenames:
             d = self.load_animal(filename)
@@ -25,7 +25,7 @@ class IOAnimals:
 
 
     def save_animal(self, animal):
-        title = animal['Name']
+        title = animal['name']
         title = title.lower()
         title = title.replace(' ', '_')
         print(title)
@@ -33,22 +33,26 @@ class IOAnimals:
         with open(self.get_filename(title) + '.json', 'w') as f:
             json.dump(animal, f)
 
-def build_animal(name,
-                    date,
-                    condition,
-                    vaccination,
-                    notes=''):
-    d = {
-        "Name": name,
-        "Date": date,
-        "Condition": condition,
-        "Vaccination": vaccination,
-        "Notes": notes
-    }
-    return d
+def build_animal(**kwargs):
+    required = ['name', 'date', 'condition', 'vaccination']
+    optional = [('notes', ""), ('place', "")]
+
+    for arg in required:
+        if arg not in kwargs:
+            raise Exception(arg + " nie istnieje w obiekcie")
+
+    for arg, default in optional:
+        if arg not in kwargs:
+            kwargs[arg] = default
+
+    return kwargs
+
+
 
 if __name__=='__main__':
     a = IOAnimals('animals')
-    item = build_animal('dog', '2019', 'ok', 'nie')
+    item = build_animal(name='dogg',date='2019', condition='ok', vaccination='nie')
     a.save_animal(item)
-
+    #print(a.load_animals())
+b = build_animal(name='abc', vaccination='nie', date='2019', condition='ok')
+a.save_animal(b)
