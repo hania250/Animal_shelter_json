@@ -6,17 +6,31 @@ class AnimalOrganizer:
         self.io = iofile.IOAnimals(dirpath)
         self.animals = self.io.load_animals()
 
-    def add_animal(self, name, date, condition, vaccination, notes=''):
-        animal = iofile.build_animal(name, date, condition, vaccination, notes)
+    def add_animal(self, **kwargs):
+        animal = iofile.build_animal(**kwargs)
 
         self.io.save_animal(animal)
 
-    def find_animal(self, arg, value):
+    def filter_animal(self, arg, value):
+        l = []
         for animal in self.animals:
             if animal[arg] == value:
-                return animal
-        raise Exception(" pozycja nie istnieje! ")
+                l.append(animal)
+        return l
 
+    def filter_animal_date(self, arg, lower_date, upper_date):
+        l =[]
+        for animal in self.animals:
+            if lower_date <= animal[arg] <= upper_date:
+                l.append(animal)
+        return l
+
+
+    def find_animal(self, arg, value):
+        l = self.filter_animal(arg, value)
+        if len(l) != 1:
+            raise Exception(" nie znaleziono tylko jednej pozycji!")
+        return l[0]
 
     def modify_animal(self, arg, value, set_arg, set_value):
         animal = self.find_animal(arg, value)
@@ -29,8 +43,10 @@ class AnimalOrganizer:
 b = AnimalOrganizer('animals')
 
 
-#b.add_animal('a', '2011', 'ok', 'nie')
+b.add_animal(name='g',date='2011',condition='ok',vaccination='nie')
 #b.add_animal('c', '2011', 'ok', 'nie')
 #print(b.get_all_animals())
 
-b.modify_animal('Name', 'c', 'Vaccination', 'nie')
+#b.modify_animal('name', 'dogg', 'vaccination', 'nie')
+#print(b.filter_animal('name', 'a'))
+#print(b.filter_animal_date('date', '2011', '2019'))
