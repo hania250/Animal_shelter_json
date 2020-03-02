@@ -11,8 +11,6 @@ def print_2(animals):
 d = client.Client('animals')
 #d.add_animal1(name='zwwww', date='2010', condition='ok', vaccination='nie')
 
-#print(d.get_all_animals1())
-#e = d.get_all_animals1()
 
 
 while True:

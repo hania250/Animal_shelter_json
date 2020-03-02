@@ -28,8 +28,7 @@ class IOAnimals:
         title = animal['name']
         title = title.lower()
         title = title.replace(' ', '_')
-        print(title)
-
+        #print(title)
         with open(self.get_filename(title) + '.json', 'w') as f:
             json.dump(animal, f)
 
@@ -47,12 +46,10 @@ def build_animal(**kwargs):
 
     return kwargs
 
-
-
 if __name__=='__main__':
     a = IOAnimals('animals')
     item = build_animal(name='dogg',date='2019', condition='ok', vaccination='nie')
     a.save_animal(item)
     #print(a.load_animals())
-b = build_animal(name='abc', vaccination='nie', date='2019', condition='ok')
-a.save_animal(b)
+#b = build_animal(name='abc', vaccination='nie', date='2019', condition='ok')
+#a.save_animal(b)

@@ -8,7 +8,6 @@ class AnimalOrganizer:
 
     def add_animal(self, **kwargs):
         animal = iofile.build_animal(**kwargs)
-
         self.io.save_animal(animal)
 
     def filter_animal(self, arg, value):
@@ -40,10 +39,13 @@ class AnimalOrganizer:
     def get_all_animals(self):
         return self.animals
 
+    def save1(self):
+        pass
+
 b = AnimalOrganizer('animals')
 
 
-b.add_animal(name='g',date='2011',condition='ok',vaccination='nie')
+#b.add_animal(name='gwq',date='2011',condition='ok',vaccination='nie')
 #b.add_animal('c', '2011', 'ok', 'nie')
 #print(b.get_all_animals())
 
