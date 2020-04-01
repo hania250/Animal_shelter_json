@@ -48,8 +48,10 @@ def build_animal(**kwargs):
 
 if __name__=='__main__':
     a = IOAnimals('animals')
-    item = build_animal(name='dogg',date='2019', condition='ok', vaccination='nie')
+    item = build_animal(name='dogg', date='2019', condition='ok', vaccination='nie')
     a.save_animal(item)
+    print(a.get_filename('dogg'))
+    print(a.load_animal('dogg.json'))
     #print(a.load_animals())
 #b = build_animal(name='abc', vaccination='nie', date='2019', condition='ok')
 #a.save_animal(b)

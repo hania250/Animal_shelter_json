@@ -1,4 +1,5 @@
 import iofile
+import os
 
 class AnimalOrganizer:
 
@@ -18,7 +19,7 @@ class AnimalOrganizer:
         return l
 
     def filter_animal_date(self, arg, lower_date, upper_date):
-        l =[]
+        l = []
         for animal in self.animals:
             if lower_date <= animal[arg] <= upper_date:
                 l.append(animal)
@@ -39,16 +40,23 @@ class AnimalOrganizer:
     def get_all_animals(self):
         return self.animals
 
-    def save1(self):
-        pass
+    def delete(self, item):
+        d = self.io.get_filename(item) + '.json'
+        if os.path.exists(d):
+            os.remove(d)
+        else:
+            print("The file does not exist")
+        self.animals
 
 b = AnimalOrganizer('animals')
 
+#b.add_animal(name='acddx', date='2011', condition='ok', vaccination='nie')
+#b.delete('dogg')
 
-#b.add_animal(name='gwq',date='2011',condition='ok',vaccination='nie')
 #b.add_animal('c', '2011', 'ok', 'nie')
 #print(b.get_all_animals())
 
 #b.modify_animal('name', 'dogg', 'vaccination', 'nie')
 #print(b.filter_animal('name', 'a'))
 #print(b.filter_animal_date('date', '2011', '2019'))
+#print(b.find_animal('date', '2011'))

@@ -31,9 +31,12 @@ class Client:
     def filter_animal(self, arg, value):
         return self.an.filter_animal(arg, value)
 
-#c = Client('animals')
-#c.add_animal1(name='zmzz', date='2010', condition='ok', vaccination='nie')
+    def delete_animal(self, item):
+        return self.an.delete(item)
 
+c = Client('animals')
+#c.add_animal1(name='zmzz', date='2010', condition='ok', vaccination='nie')
+#c.delete_animal('fff')
 #print(c.get_animal_name('a'))
 #print(c.get_animal_name(""))
 #print(c.get_filter_date('2011', '2011'))

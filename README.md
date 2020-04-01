@@ -16,6 +16,7 @@ The main purpose of this project is to learn new technology (Python, Flask, SQL)
   * Filtering by attributes
   * Data archiving
   * List display of animals
+  * Delete animal
 3. Structure:
   * Handling by console interface
   * Handling by http (using framework flask)
